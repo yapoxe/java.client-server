@@ -28,7 +28,7 @@ class Electric {
 	}
 }
 
-public class HelloWorld {
+public class Server {
 	public static void main(String[] args) {
 		/* System.out.println("Эта программа считывает показания счётчиков (T1, T2, T3) для каждой квартиры из файла input.txt"
 				+ " и выводит рассчетную стоимость в файл output.txt.\nПосле подтверждения в консоли пересылает все данные на сервер."
