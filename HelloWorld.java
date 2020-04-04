@@ -4,22 +4,22 @@ import java.util.*;
 class Electric {
 	double T1, T2, T3; 
 	Integer N;
-	// Конструктор
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	Electric() {
 		T1 = T2 = T3 = N = 0;
 	}
-	// Конструктор копирования
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	Electric(Electric X) {
 		T1 = X.T1;
 		T2 = X.T2;
 		T3 = X.T3;
 		N = X.N;
 	}
-	// Подсчитываем рассчетную стоимость
+	// РџРѕРґСЃС‡РёС‚С‹РІР°РµРј СЂР°СЃСЃС‡РµС‚РЅСѓСЋ СЃС‚РѕРёРјРѕСЃС‚СЊ
 	double sum() {
 		return T1 * 0.5 + T2 * 0.63 + T3 * 0.8;
 	}
-	// Устанавливаем заданные значения
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·Р°РґР°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 	void set(double T1, double T2, double T3, Integer N) {
 		this.T1 = T1;
 		this.T2 = T2;
@@ -30,29 +30,29 @@ class Electric {
 
 public class HelloWorld {
 	public static void main(String[] args) {
-		/* System.out.println("Эта программа считывает показания счётчиков (T1, T2, T3) для каждой квартиры из файла input.txt"
-				+ " и выводит рассчетную стоимость в файл output.txt.\nПосле подтверждения в консоли пересылает все данные на сервер."
-				+ "\nДля файлов input.txt и output.txt существует определенные правила заполнения."
-				+ "\nПример строки входа в input.txt: \"Квартира X: T1 T2 T3\""
-				+ "\nПример строки выхода в output.txt: \"Квартира X: K руб.\"\n\n");
+		/* System.out.println("Р­С‚Р° РїСЂРѕРіСЂР°РјРјР° СЃС‡РёС‚С‹РІР°РµС‚ РїРѕРєР°Р·Р°РЅРёСЏ СЃС‡С‘С‚С‡РёРєРѕРІ (T1, T2, T3) РґР»СЏ РєР°Р¶РґРѕР№ РєРІР°СЂС‚РёСЂС‹ РёР· С„Р°Р№Р»Р° input.txt"
+				+ " Рё РІС‹РІРѕРґРёС‚ СЂР°СЃСЃС‡РµС‚РЅСѓСЋ СЃС‚РѕРёРјРѕСЃС‚СЊ РІ С„Р°Р№Р» output.txt.\nРџРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РІ РєРѕРЅСЃРѕР»Рё РїРµСЂРµСЃС‹Р»Р°РµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ РЅР° СЃРµСЂРІРµСЂ."
+				+ "\nР”Р»СЏ С„Р°Р№Р»РѕРІ input.txt Рё output.txt СЃСѓС‰РµСЃС‚РІСѓРµС‚ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РїСЂР°РІРёР»Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ."
+				+ "\nРџСЂРёРјРµСЂ СЃС‚СЂРѕРєРё РІС…РѕРґР° РІ input.txt: \"РљРІР°СЂС‚РёСЂР° X: T1 T2 T3\""
+				+ "\nРџСЂРёРјРµСЂ СЃС‚СЂРѕРєРё РІС‹С…РѕРґР° РІ output.txt: \"РљРІР°СЂС‚РёСЂР° X: K СЂСѓР±.\"\n\n");
 		*/
 		
-		// Считываем информацию из input.txt и записываем стоимость в output.txt
+		// РЎС‡РёС‚С‹РІР°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РёР· input.txt Рё Р·Р°РїРёСЃС‹РІР°РµРј СЃС‚РѕРёРјРѕСЃС‚СЊ РІ output.txt
 		try(FileReader fileInput = new FileReader("input.txt");
 			FileWriter fileOutput = new FileWriter("output.txt");
 			BufferedReader bufferedInput = new BufferedReader(fileInput);
 			BufferedWriter bufferedOutput = new BufferedWriter(fileOutput)) {
-			// Создаем массив аккаунтов
+			// РЎРѕР·РґР°РµРј РјР°СЃСЃРёРІ Р°РєРєР°СѓРЅС‚РѕРІ
 			ArrayList<Electric> accountList = new ArrayList<>(100);
 			Electric importAccount = new Electric();
-			// Считываем строки, разделяем их и получаем нужные T1, T2, T3 и N квартиры
+			// РЎС‡РёС‚С‹РІР°РµРј СЃС‚СЂРѕРєРё, СЂР°Р·РґРµР»СЏРµРј РёС… Рё РїРѕР»СѓС‡Р°РµРј РЅСѓР¶РЅС‹Рµ T1, T2, T3 Рё N РєРІР°СЂС‚РёСЂС‹
 			String[] strSub;
 			String strInput = bufferedInput.readLine();
 			Integer k = 0;
 			while(strInput != null) {
 				// System.out.println(strInput);
 				strSub = strInput.split(" ");
-				// Проверка строк на формат
+				// РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє РЅР° С„РѕСЂРјР°С‚
 				try {
 					Integer T1 = new Integer(strSub[2]);
 					Integer T2 = new Integer(strSub[3]);
@@ -61,15 +61,15 @@ public class HelloWorld {
 					// System.out.println(T1 + " " + T2 + " " + T3 + " " + N);
 					importAccount.set(T1, T2, T3, N);
 					accountList.add(k++, importAccount);
-					bufferedOutput.write(strSub[0] + " " + importAccount.N + ": " + importAccount.sum() + " руб.\n");
+					bufferedOutput.write(strSub[0] + " " + importAccount.N + ": " + importAccount.sum() + " СЂСѓР±.\n");
 					bufferedOutput.newLine();
 				} catch(NumberFormatException e) {
-					System.out.println("Ошибка. Неверный формат строки.");
+					System.out.println("РћС€РёР±РєР°. РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ СЃС‚СЂРѕРєРё.");
 				}
 				strInput = bufferedInput.readLine();
 			}
 		} catch(IOException e) {
-			System.out.println("Ошибка: " + e);
+			System.out.println("РћС€РёР±РєР°: " + e);
 		}		
 	}
 }
