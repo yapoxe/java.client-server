@@ -69,7 +69,7 @@ public class Server {
 				strInput = bufferedInput.readLine();
 			}
 		} catch(IOException e) {
-			System.out.println("Ошибка: " + e);
+			System.out.println("Ошибка ввода-вывода: " + e);
 		}		
 	}
 }
