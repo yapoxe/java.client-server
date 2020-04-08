@@ -5,22 +5,22 @@ import java.net.*;
 class Electric {
 	double T1, T2, T3; 
 	Integer N;
-	// Конструктор
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	Electric() {
 		T1 = T2 = T3 = N = 0;
 	}
-	// Конструктор копирования
+	// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	Electric(Electric X) {
 		T1 = X.T1;
 		T2 = X.T2;
 		T3 = X.T3;
 		N = X.N;
 	}
-	// Подсчитываем рассчетную стоимость
+	// РџРѕРґСЃС‡РёС‚С‹РІР°РµРј СЂР°СЃСЃС‡РµС‚РЅСѓСЋ СЃС‚РѕРёРјРѕСЃС‚СЊ
 	double sum() {
 		return T1 * 0.5 + T2 * 0.63 + T3 * 0.8;
 	}
-	// Устанавливаем заданные значения
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·Р°РґР°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 	void set(double T1, double T2, double T3, Integer N) {
 		this.T1 = T1;
 		this.T2 = T2;
@@ -35,28 +35,28 @@ public class Server {
 	private static String passwordBD = "TestPassword";
 	
 	public static void main(String[] args) {
-		/* System.out.println("Эта программа считывает показания счётчиков (T1, T2, T3) для каждой квартиры из файла input.txt"
-				+ " и выводит рассчетную стоимость в файл output.txt.\nПосле подтверждения в консоли пересылает все данные на сервер."
-				+ "\nДля файлов input.txt и output.txt существует определенные правила заполнения."
-				+ "\nПример строки входа в input.txt: \"Квартира X: T1 T2 T3\""
-				+ "\nПример строки выхода в output.txt: \"Квартира X: K руб.\"\n\n");
+		/* System.out.println("Р­С‚Р° РїСЂРѕРіСЂР°РјРјР° СЃС‡РёС‚С‹РІР°РµС‚ РїРѕРєР°Р·Р°РЅРёСЏ СЃС‡С‘С‚С‡РёРєРѕРІ (T1, T2, T3) РґР»СЏ РєР°Р¶РґРѕР№ РєРІР°СЂС‚РёСЂС‹ РёР· С„Р°Р№Р»Р° input.txt"
+				+ " Рё РІС‹РІРѕРґРёС‚ СЂР°СЃСЃС‡РµС‚РЅСѓСЋ СЃС‚РѕРёРјРѕСЃС‚СЊ РІ С„Р°Р№Р» output.txt.\nРџРѕСЃР»Рµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РІ РєРѕРЅСЃРѕР»Рё РїРµСЂРµСЃС‹Р»Р°РµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ РЅР° СЃРµСЂРІРµСЂ."
+				+ "\nР”Р»СЏ С„Р°Р№Р»РѕРІ input.txt Рё output.txt СЃСѓС‰РµСЃС‚РІСѓРµС‚ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РїСЂР°РІРёР»Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ."
+				+ "\nРџСЂРёРјРµСЂ СЃС‚СЂРѕРєРё РІС…РѕРґР° РІ input.txt: \"РљРІР°СЂС‚РёСЂР° X: T1 T2 T3\""
+				+ "\nРџСЂРёРјРµСЂ СЃС‚СЂРѕРєРё РІС‹С…РѕРґР° РІ output.txt: \"РљРІР°СЂС‚РёСЂР° X: K СЂСѓР±.\"\n\n");
 		*/
 
-		// Создаем массив аккаунтов
+		// РЎРѕР·РґР°РµРј РјР°СЃСЃРёРІ Р°РєРєР°СѓРЅС‚РѕРІ
 		ArrayList<Electric> accountList = new ArrayList<>();
-		// Открываем файлы, создаем буферы обмена
+		// РћС‚РєСЂС‹РІР°РµРј С„Р°Р№Р»С‹, СЃРѕР·РґР°РµРј Р±СѓС„РµСЂС‹ РѕР±РјРµРЅР°
 		try(FileReader fileInput = new FileReader("input.txt");
 			FileWriter fileOutput = new FileWriter("output.txt");
 			BufferedReader bufferedInputFile = new BufferedReader(fileInput);
 			BufferedWriter bufferedOutputFile = new BufferedWriter(fileOutput)) {
-			// Считываем строки, разделяем их и получаем нужные T1, T2, T3 и N квартиры
+			// РЎС‡РёС‚С‹РІР°РµРј СЃС‚СЂРѕРєРё, СЂР°Р·РґРµР»СЏРµРј РёС… Рё РїРѕР»СѓС‡Р°РµРј РЅСѓР¶РЅС‹Рµ T1, T2, T3 Рё N РєРІР°СЂС‚РёСЂС‹
 			String[] strSub;
 			String strInput = bufferedInputFile.readLine();
 			while(strInput != null) {
 				// System.out.println(strInput);
 				strSub = strInput.split(" ");
 				Electric importAccount = new Electric();
-				// Проверка строк на формат
+				// РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРє РЅР° С„РѕСЂРјР°С‚
 				try {
 					Integer T1 = new Integer(strSub[2]);
 					Integer T2 = new Integer(strSub[3]);
@@ -64,80 +64,80 @@ public class Server {
 					Integer N = new Integer(strSub[1].substring(0, strSub[1].length() - 1));
 					importAccount.set(T1, T2, T3, N);
 					accountList.add(importAccount);
-					bufferedOutputFile.write(strSub[0] + " " + importAccount.N + ": " + importAccount.sum() + " руб.\n");
-					// Записываем в файл информацию, все дескрипторы автоматически закроются после прохождения блока try>catch>finally
+					bufferedOutputFile.write(strSub[0] + " " + importAccount.N + ": " + importAccount.sum() + " СЂСѓР±.\n");
+					// Р—Р°РїРёСЃС‹РІР°РµРј РІ С„Р°Р№Р» РёРЅС„РѕСЂРјР°С†РёСЋ, РІСЃРµ РґРµСЃРєСЂРёРїС‚РѕСЂС‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё Р·Р°РєСЂРѕСЋС‚СЃСЏ РїРѕСЃР»Рµ РїСЂРѕС…РѕР¶РґРµРЅРёСЏ Р±Р»РѕРєР° try>catch>finally
 					bufferedOutputFile.newLine();
 				} catch(NumberFormatException e) {
-					System.out.println("Ошибка. Неверный формат строки.");
+					System.out.println("РћС€РёР±РєР°. РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ СЃС‚СЂРѕРєРё.");
 				}
 				strInput = bufferedInputFile.readLine();
 			}
 		} catch(IOException e) {
-			System.out.println("Ошибка ввода-вывода: " + e);
+			System.out.println("РћС€РёР±РєР° РІРІРѕРґР°-РІС‹РІРѕРґР°: " + e);
 		}
 		try(ServerSocket serverSocket = new ServerSocket(port)) {
-			// Запускаем сервер с портом 30000
-			System.out.println("Сервер запущен. Ожидание подключений...");
+			// Р—Р°РїСѓСЃРєР°РµРј СЃРµСЂРІРµСЂ СЃ РїРѕСЂС‚РѕРј 30000
+			System.out.println("РЎРµСЂРІРµСЂ Р·Р°РїСѓС‰РµРЅ. РћР¶РёРґР°РЅРёРµ РїРѕРґРєР»СЋС‡РµРЅРёР№...");
 			Socket clientSocket = serverSocket.accept();
-			System.out.println("Подключился пользователь.");
+			System.out.println("РџРѕРґРєР»СЋС‡РёР»СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.");
 			try(BufferedReader bufferedChatIn = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				BufferedWriter bufferedChatOut = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()))) {
-				bufferedChatOut.write("Вы подключились к серверу.\n\n");
+				bufferedChatOut.write("Р’С‹ РїРѕРґРєР»СЋС‡РёР»РёСЃСЊ Рє СЃРµСЂРІРµСЂСѓ.\n\n");
 				bufferedChatOut.flush();
 				String clientMessage;
 				for(int i = 3; i != 0; i--) {
-					bufferedChatOut.write("Введите пароль для доступа к БД (осталось попыток: " + i + "): \n\n");
+					bufferedChatOut.write("Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє Р‘Р” (РѕСЃС‚Р°Р»РѕСЃСЊ РїРѕРїС‹С‚РѕРє: " + i + "): \n\n");
 					bufferedChatOut.flush();
 					clientMessage = bufferedChatIn.readLine();
 					if(clientMessage.equals(passwordBD)) {
-						bufferedChatOut.write("\nПравильный пароль. Подключение...\n"); 
+						bufferedChatOut.write("\nРџСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ. РџРѕРґРєР»СЋС‡РµРЅРёРµ...\n"); 
 						bufferedChatOut.flush(); 
 						break;
 					} else {
-						bufferedChatOut.write("\nНеправильный пароль. Попробуйте ещё раз.\n");
+						bufferedChatOut.write("\nРќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РїР°СЂРѕР»СЊ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰С‘ СЂР°Р·.\n");
 						bufferedChatOut.flush();
 						if(i == 1) {
-							bufferedChatOut.write("Исчерпано количество попыток подключения. Соединение разорвано.\n");
+							bufferedChatOut.write("РСЃС‡РµСЂРїР°РЅРѕ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРїС‹С‚РѕРє РїРѕРґРєР»СЋС‡РµРЅРёСЏ. РЎРѕРµРґРёРЅРµРЅРёРµ СЂР°Р·РѕСЂРІР°РЅРѕ.\n");
 							bufferedChatOut.flush();
 							clientSocket.close();
 						}
 					}
 				}
-				bufferedChatOut.write("Вы успешно подключились к БД! К сожалению, она пока что в текстовом файле.\n"
-						+ "Но скоро будет в MySQL! Вы хотите её просмотреть? (Yes/No)\n\n");
+				bufferedChatOut.write("Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕРґРєР»СЋС‡РёР»РёСЃСЊ Рє Р‘Р”! Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ, РѕРЅР° РїРѕРєР° С‡С‚Рѕ РІ С‚РµРєСЃС‚РѕРІРѕРј С„Р°Р№Р»Рµ.\n"
+						+ "РќРѕ СЃРєРѕСЂРѕ Р±СѓРґРµС‚ РІ MySQL! Р’С‹ С…РѕС‚РёС‚Рµ РµС‘ РїСЂРѕСЃРјРѕС‚СЂРµС‚СЊ? (Yes/No)\n\n");
 				bufferedChatOut.flush();
 				clientMessage = bufferedChatIn.readLine();
 				if(clientMessage.equals("Yes")) {
 					Electric importAccount = new Electric();
-					bufferedChatOut.write("\nПоказания счётчиков:\n");
+					bufferedChatOut.write("\nРџРѕРєР°Р·Р°РЅРёСЏ СЃС‡С‘С‚С‡РёРєРѕРІ:\n");
 					bufferedChatOut.flush();
 					for(int i = 0; i < accountList.size(); i++) {
 						importAccount = accountList.get(i);
-						bufferedChatOut.write((i + 1) + ". Квартира номер " + importAccount.N + ": " + importAccount.T1 
+						bufferedChatOut.write((i + 1) + ". РљРІР°СЂС‚РёСЂР° РЅРѕРјРµСЂ " + importAccount.N + ": " + importAccount.T1 
 								+ " " + importAccount.T2 + " " + importAccount.T3 + "\n");
 						bufferedChatOut.flush();
 					}
-					bufferedChatOut.write("\n\nБД загружена. Соединение закрыто.\n");
+					bufferedChatOut.write("\n\nР‘Р” Р·Р°РіСЂСѓР¶РµРЅР°. РЎРѕРµРґРёРЅРµРЅРёРµ Р·Р°РєСЂС‹С‚Рѕ.\n");
 					bufferedChatOut.flush();
-					System.out.println("Пользователь загрузил БД и был отключен.");
+					System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РіСЂСѓР·РёР» Р‘Р” Рё Р±С‹Р» РѕС‚РєР»СЋС‡РµРЅ.");
 					clientMessage = bufferedChatIn.readLine();
 					clientSocket.close();
 				} else {
-					bufferedChatOut.write("Тогда не вижу смысла в соединении. Простите, но мне пора работать...\n");
+					bufferedChatOut.write("РўРѕРіРґР° РЅРµ РІРёР¶Сѓ СЃРјС‹СЃР»Р° РІ СЃРѕРµРґРёРЅРµРЅРёРё. РџСЂРѕСЃС‚РёС‚Рµ, РЅРѕ РјРЅРµ РїРѕСЂР° СЂР°Р±РѕС‚Р°С‚СЊ...\n");
 					bufferedChatOut.flush();
 				}
-				bufferedChatOut.write("\nСоединение закрыто.\n");
+				bufferedChatOut.write("\nРЎРѕРµРґРёРЅРµРЅРёРµ Р·Р°РєСЂС‹С‚Рѕ.\n");
 				bufferedChatOut.flush();
-				System.out.println("Пользователь загрузил был отключен.");
+				System.out.println("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РіСЂСѓР·РёР» Р±С‹Р» РѕС‚РєР»СЋС‡РµРЅ.");
 				clientMessage = bufferedChatIn.readLine();
 				clientSocket.close();
 			} catch(IOException e) {
-				System.out.println("Ошибка соединения с пользователем: " + e);
+				System.out.println("РћС€РёР±РєР° СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј: " + e);
 			} finally {
 				clientSocket.close();
 			}
 		} catch(IOException e) {
-			System.out.println("Ошибка сервера: " + e);
+			System.out.println("РћС€РёР±РєР° СЃРµСЂРІРµСЂР°: " + e);
 		}
 	}
 }

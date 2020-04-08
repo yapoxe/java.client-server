@@ -21,11 +21,11 @@ class NewThread implements Runnable {
 				System.out.println(serverMessage);
 			}
 		} catch (IOException e) {
-			System.out.println("Поток прерван: " + nameThread);
+			System.out.println("РџРѕС‚РѕРє РїСЂРµСЂРІР°РЅ: " + nameThread);
 		} catch (NullPointerException e) {
-			System.out.println("Сервер закрыл соединение.");
+			System.out.println("РЎРµСЂРІРµСЂ Р·Р°РєСЂС‹Р» СЃРѕРµРґРёРЅРµРЅРёРµ.");
 		}
-		System.out.println("Поток завершен: " + nameThread);
+		System.out.println("РџРѕС‚РѕРє Р·Р°РІРµСЂС€РµРЅ: " + nameThread);
 	}
 }
 
@@ -35,13 +35,13 @@ public class Client {
 	private static Integer port = 30000;
 	
 	public static void main(String[] args) {
-		System.out.println("\nПодключение к серверу...");
+		System.out.println("\nРџРѕРґРєР»СЋС‡РµРЅРёРµ Рє СЃРµСЂРІРµСЂСѓ...");
 		try(Socket clientSocket = new Socket(adress, port);
 			BufferedReader bufferedConsoleInput = new BufferedReader(new InputStreamReader(System.in));
 			BufferedReader bufferedChatIn = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			BufferedWriter bufferedChatOut = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()))) {
 			try {
-				new NewThread("Второй поток", clientSocket, bufferedChatIn);
+				new NewThread("Р’С‚РѕСЂРѕР№ РїРѕС‚РѕРє", clientSocket, bufferedChatIn);
 				while(true) {
 					String clientMessage = bufferedConsoleInput.readLine();
 					bufferedChatOut.write(clientMessage + "\n");
@@ -51,7 +51,7 @@ public class Client {
 				clientSocket.close();
 			}
 		} catch (IOException e) {
-			System.out.println("Ошибка соединения: " + e);
+			System.out.println("РћС€РёР±РєР° СЃРѕРµРґРёРЅРµРЅРёСЏ: " + e);
 		}
 
 	}
