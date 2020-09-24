@@ -6,5 +6,4 @@
 
 В идеале хочу ещё оформить красивый UI и убрать input.txt/output.txt.
 
-Всю информацию об обновлениях смотрите в коммитах.
-
+![](https://github.com/yapoxe/java.client-server/blob/master/ClientServerSession.png)
